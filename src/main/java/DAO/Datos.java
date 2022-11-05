@@ -30,10 +30,12 @@ public class Datos {
 
         SQLConexion.put("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
         //SQLConexion.put("url", "jdbc:sqlserver://test.cztl1tw9syzy.us-east-1.rds.amazonaws.com:1433;databaseName=BD_SERVICIOS_KARAN ");
-        SQLConexion.put("url", "jdbc:sqlserver://localhost:1433;databaseName=torneo");
+        //SQLConexion.put("url", "jdbc:sqlserver://localhost:1433;databaseName=torneo");
+        SQLConexion.put("url", "jdbc:sqlserver://54.144.48.101:1433;databaseName=BD_KARAN_TEST_BACKUP");
         SQLConexion.put("usuario", "sa");
         //SQLConexion.put("password", "bzfQ16MqYYzFu5UTUCW6");
-        SQLConexion.put("password", "51F310e0f0!");
+        //SQLConexion.put("password", "51F310e0f0!");
+        SQLConexion.put("password", "d^@&sg1V&nKEt6rt");
 
         //QUERY
         SQLConexion.put("Login", "SELECT PK_ID_USUARIO FROM TB_USUARIO WHERE FC_NOMBRE='%s' AND FC_PASSWORD='%s'");
