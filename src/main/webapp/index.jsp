@@ -23,7 +23,7 @@
             <div class="offset-md-4 col-md-4" style="background-color: #eee; padding: 2%;" >
                 <form method="post" action="login">
                     <div class="mb-3">
-                        <img src="https://raw.githubusercontent.com/Covenant00/Torneo/master/src/main/webapp/LOGO-QATAR-2022-5.jpg" class="img-fluid">
+                        <img src="IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid">
                         <br><br>
                         <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
                         <input type="text" class="form-control" id="email" name="Usuario">

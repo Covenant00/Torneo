@@ -88,7 +88,7 @@
 
     <div class="container-fluid">
         <div class="row text-center">
-            <h1><img src="https://raw.githubusercontent.com/Covenant00/Torneo/master/src/main/webapp/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Tabla de Líderes</strong></h1>
+            <h1><img src="IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Tabla de Líderes</strong></h1>
         </div>
     </div>
 
