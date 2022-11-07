@@ -88,7 +88,7 @@
 
     <div class="container-fluid">
         <div class="row text-center">
-            <h1><img src="https://torneo2022.scm.azurewebsites.net/wwwroot/webapps/torneo-1.0-SNAPSHOT/IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Tabla de Líderes</strong></h1>
+            <h1><img src="IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Tabla de Líderes</strong></h1>
         </div>
     </div>
 

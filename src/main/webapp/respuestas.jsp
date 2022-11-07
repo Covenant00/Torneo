@@ -49,7 +49,7 @@
 
     <div class="container-fluid">
         <div class="row text-center">
-            <h1><img src="https://torneo2022.scm.azurewebsites.net/wwwroot/webapps/torneo-1.0-SNAPSHOT/IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Mis Respuestas</strong></h1>
+            <h1><img src="IMG/LOGO-QATAR-2022-5.jpg" class="img-fluid" width="30%;"><br><strong>Mis Respuestas</strong></h1>
         </div>
     </div>
 
@@ -99,7 +99,7 @@
                 <td class="text-center"> <br><input class="form-check-input" type="radio" name="<%= m.getIdMaestro()%>" value="local" disabled=""></td>
                     <%}%>
                     <% equipo = d.EquiposxID(m.getIdE1());%>
-                <td ><center> <img src="https://torneo2022.scm.azurewebsites.net/wwwroot/webapps/torneo-1.0-SNAPSHOT/<%= equipo.get(1)%>" class="img-fluid">&nbsp;<strong> <%= equipo.get(0)%></strong></center></td>
+                <td ><center> <img src="<%= equipo.get(1)%>" class="img-fluid">&nbsp;<strong> <%= equipo.get(0)%></strong></center></td>
                 <% equipo.clear(); %>
                 <% equipo = d.EquiposxID(m.getIdE2());%>
                 <%if (m.getEmpate() != 0) {%>
@@ -107,7 +107,7 @@
                 <%} else {%>
             <td class="text-center"><br> <input class="form-check-input" type="radio" name="<%= m.getIdMaestro()%>" value="empate" disabled=""></td>
                 <%}%>
-            <td><center> <img src="https://torneo2022.scm.azurewebsites.net/wwwroot/webapps/torneo-1.0-SNAPSHOT/<%= equipo.get(1)%>" class="img-fluid">  &nbsp;<strong> <%= equipo.get(0)%></strong></center></td>
+            <td><center> <img src="<%= equipo.get(1)%>" class="img-fluid">  &nbsp;<strong> <%= equipo.get(0)%></strong></center></td>
                 <% equipo.clear();%>
                 <%if (m.getGana2() != 0) {%>
             <td class="text-center"><br> <input class="form-check-input" type="radio" name="<%= m.getIdMaestro()%>" value="visita"checked="" disabled=""></td>
