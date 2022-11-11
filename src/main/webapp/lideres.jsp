@@ -4,6 +4,7 @@
     Author     : root
 --%>
 
+<%@page import="MODEL.MaestroU"%>
 <%@page import="CONTROLLER.UserComparator"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.Comparator"%>
@@ -33,36 +34,30 @@
         String nombreUsuario = (String) session.getAttribute("nombreUsuario");
         Datos d = new Datos();
         ArrayList<Maestro> maestro = new ArrayList<>();
-        ArrayList<Maestro> RespuestasUsuarios = new ArrayList<>();
-        ArrayList<Integer> Usuarios = new ArrayList<>();
-        Usuarios = d.usuarios();
+        ArrayList<MaestroU> RespuestasUsuarios = new ArrayList<>();
         maestro = d.Maestro();
-
-        HashMap<Integer, Integer> tabla = new HashMap<Integer, Integer>();
-
+        HashMap<Integer, Integer> tabla = new HashMap<>();
+        RespuestasUsuarios = d.RespuestasU();
+        ArrayList<Integer> aciertos = new ArrayList<>();
 %>
 
-<%    int RespuestasCorrectas = 0;
-    for (Integer i : Usuarios) {
-        RespuestasUsuarios = d.Respuestas(i);
+<%    int partido = 0;
 
-        for (Maestro r : RespuestasUsuarios) {
-            for (Maestro m : maestro) {
-                if (r.getIdE1() == m.getIdE1() && r.getIdE2() == m.getIdE2() && r.getGana1() == m.getGana1() && r.getGana2() == m.getGana2() && r.getEmpate() == m.getEmpate()) {
-                    RespuestasCorrectas++;
-                }
+    for (MaestroU r : RespuestasUsuarios) {
+        partido++;
+        for (Maestro m : maestro) {
+            if (r.getGana1() == m.getGana1() && r.getGana2() == m.getGana2() && r.getEmpate() == m.getEmpate() && r.getIdE1() == m.getIdE1() && r.getIdE2() == m.getIdE2()) {
+                aciertos.add(partido);
+                tabla.put(r.getIdUsuario(), aciertos.size());
             }
         }
-
-        RespuestasUsuarios.clear();
-        tabla.put(i, RespuestasCorrectas);
-        RespuestasCorrectas = 0;
+        if (partido == 48) {
+            aciertos.clear();
+            partido = 0;
+        }
 
     }
-
-    UserComparator comparator = new UserComparator(tabla);
-    Map<Integer, Integer> result = new TreeMap<>(comparator);
-    result.putAll(tabla);
+    RespuestasUsuarios.clear();
 
 %>
 <html>

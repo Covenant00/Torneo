@@ -6,13 +6,13 @@ package DAO;
 
 import MODEL.Equipo;
 import MODEL.Maestro;
+import MODEL.MaestroU;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -46,7 +46,8 @@ public class Datos {
 
         //Maestro
         SQLConexion.put("Maestro", "SELECT * FROM MAESTRO order by pk_id_maestro");
-        SQLConexion.put("Respuestas", "SELECT * FROM TB_PARTIDO WHERE FI_ID_USUARIO='%s' order by pk_id_respuesta ");
+        SQLConexion.put("Respuestas", "SELECT * FROM TB_PARTIDO  order by pk_id_respuesta");
+        SQLConexion.put("RespuestasUsuario", "SELECT * FROM TB_PARTIDO where FI_ID_USUARIO='%s' order by pk_id_respuesta ");
 
         //AUXILIARES
         SQLConexion.put("SELECCIONADATOSEQUIPO", "SELECT FC_NOMBRE, FC_ID_FIFA,FC_GRUPO FROM TB_EQUIPO WHERE PK_ID_EQUIPO='%s'");
@@ -231,7 +232,7 @@ public class Datos {
         }
 
         return salida;
-    }
+    }   //respuestas maestras
 
     public ArrayList<String> EquiposxID(int idE) {
         ArrayList<String> salida = new ArrayList<>();
@@ -362,8 +363,8 @@ public class Datos {
     }
 
     //VER RESPUESTAS
-    public ArrayList<Maestro> Respuestas(int idusuario) {
-        ArrayList<Maestro> salida = new ArrayList<>();
+    public ArrayList<MaestroU> RespuestasU() {
+        ArrayList<MaestroU> salida = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -374,19 +375,69 @@ public class Datos {
                     SQLConexion.get("usuario"), SQLConexion.get("password"));
 
             stmt = con.createStatement();
-            String sql = String.format(SQLConexion.get("Respuestas"), idusuario);
+            String sql = String.format(SQLConexion.get("Respuestas"));
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int idEquipo = rs.getInt("PK_ID_RESPUESTA");
                 int equipo1 = rs.getInt("FI_EQUIPO_1");
-                //int USER = rs.getInt("FI_ID_USUARIO");
+                int USER = rs.getInt("FI_ID_USUARIO");
                 int equipo2 = rs.getInt("FI_EQUIPO_2");
                 int Gana1 = rs.getInt("FI_GANA_E1");
                 int Gana2 = rs.getInt("FI_GANA_E2");
                 int Empate = rs.getInt("FI_EMPATE");
                 //Date fa = rs.getDate("FD_FECHA_ALTA");
 
-                Maestro c = new Maestro(idEquipo, equipo1, equipo2, Gana1, Gana2, Empate);
+                MaestroU c = new MaestroU(idEquipo, equipo1, equipo2, Gana1, Gana2, Empate, USER);
+                salida.add(c);
+            }
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se encontro el driver");
+        } catch (SQLException e) {
+            System.out.println("Error de SQL " + e.getMessage());
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+            }
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+            }
+            try {
+                con.close();
+            } catch (SQLException e) {
+            }
+        }
+
+        return salida;
+    }
+
+    public ArrayList<MaestroU> Respuestas(int idUsuario) {
+        ArrayList<MaestroU> salida = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName(SQLConexion.get("driver"));
+            con = DriverManager.getConnection(SQLConexion.get("url"),
+                    SQLConexion.get("usuario"), SQLConexion.get("password"));
+
+            stmt = con.createStatement();
+            String sql = String.format(SQLConexion.get("RespuestasUsuario"), idUsuario);
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idEquipo = rs.getInt("PK_ID_RESPUESTA");
+                int equipo1 = rs.getInt("FI_EQUIPO_1");
+                int USER = rs.getInt("FI_ID_USUARIO");
+                int equipo2 = rs.getInt("FI_EQUIPO_2");
+                int Gana1 = rs.getInt("FI_GANA_E1");
+                int Gana2 = rs.getInt("FI_GANA_E2");
+                int Empate = rs.getInt("FI_EMPATE");
+                //Date fa = rs.getDate("FD_FECHA_ALTA");
+
+                MaestroU c = new MaestroU(idEquipo, equipo1, equipo2, Gana1, Gana2, Empate, USER);
                 salida.add(c);
             }
 
