@@ -1,9 +1,10 @@
-<%-- 
+<%--
     Document   : inicio
     Created on : 26 jun 2022, 16:11:07
     Author     : root
 --%>
 
+<%@page import="MODEL.MaestroU"%>
 <%@page import="MODEL.Maestro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="MODEL.Equipo"%>
@@ -21,7 +22,7 @@
         String nombreUsuario = (String) session.getAttribute("nombreUsuario");
         Datos d = new Datos();
         ArrayList<String> equipo = new ArrayList<>();
-        ArrayList<Maestro> maestro = new ArrayList<>();
+        ArrayList<MaestroU> maestro = new ArrayList<>();
         maestro = d.Respuestas(idUsuario);
 
 
@@ -30,10 +31,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
-        <title>Mis Respuestas</title> 
+        <title>Mis Respuestas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <input type="text" id="OK" value="<%= OK%>" hidden=""> 
+    <input type="text" id="OK" value="<%= OK%>" hidden="">
 
 </head>
 <body>
@@ -90,7 +91,7 @@
 
 
             <input  type="text" name="idUsuario" value="<%= idUsuario%>" hidden="">
-            <%for (Maestro m : maestro) {%>
+            <%for (MaestroU m : maestro) {%>
 
             <tr>
                 <%if (m.getGana1() != 0) {%>
